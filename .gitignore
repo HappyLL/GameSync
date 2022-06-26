@@ -1,0 +1,52 @@
+Program/trunk/Client/LuaScripts/common
+
+# Temp log files
+Program/trunk/Client/Logs
+Program/trunk/Client/logs.txt
+Program/trunk/log
+Program/trunk/Client/battle_dumps
+
+# Unity Cache/Temp Folders
+Program/trunk/Client/Library
+Program/trunk/Client/Temp
+Program/trunk/Client/obj
+
+# User settings
+Program/trunk/Client/UserData.xml
+Program/trunk/Client/UserSettings
+
+# IDE/Text Editor Specific Folders/Files
+.vscode/
+.idea/
+*.csproj
+*.sln
+
+# Build Files
+Program/trunk/Client/Build
+Program/trunk/Client/Assets/Manifest.asset
+Program/trunk/Client/Assets/Manifest.asset.meta
+Program/trunk/Client/Assets/ResBuildSetting.asset
+Program/trunk/Client/Assets/ResBuildSetting.asset.meta
+Program/trunk/Client/Assets/Bundles/LuaScripts
+Program/trunk/Client/Assets/Bundles/LuaScripts.meta
+Program/trunk/Client/AssetBundles
+Program/trunk/Client/Assets/TempData
+Program/trunk/Client/Assets/TempData.meta
+Program/trunk/Client/Assets/StreamingAssets/assets
+Program/trunk/Client/Assets/StreamingAssets/assets.meta
+Program/trunk/Client/Tools/luadataview/DumpTable.lua
+Program/trunk/Client/Assets/Bundles/UI/**/*.spriteatlas
+Program/trunk/Client/Assets/Bundles/UI/**/*.spriteatlas.meta
+Program/trunk/Client/BuildLib/build_android_x86/
+Program/trunk/Client/BuildLib/build_v7a/
+Program/trunk/Client/BuildLib/build_v64/
+
+Design/HYDataTool/Log
+Design/HYDataTool/Backup
+Design/HYDataTool/user.config
+Design/HYDataTool/user.config
+
+Audio/.cache
+Program/trunk/Client/Assets/StreamingAssets/Audio/GeneratedSoundBanks
+Program/trunk/Client/xcodeExport
+ID*map_*baked.*
