@@ -1,15 +1,11 @@
-Program/trunk/Client/LuaScripts/common1
-
 # Temp log files
-Program/trunk/Client/Logs
-Program/trunk/Client/logs.txt
-Program/trunk/log/1
-Program/trunk/Client/battle_dumps
+Client/SyncClient/Logs
+Client/SyncClient/logs.txt
 
 # Unity Cache/Temp Folders
-Program/trunk/Client/Library
-Program/trunk/Client/Temp
-Program/trunk/Client/obj
+Client/SyncClient/Library
+Client/SyncClient/Temp
+Client/SyncClient/obj
 
 # User settings
 Program/trunk/Client/UserData.xml
