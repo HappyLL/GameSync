@@ -25,14 +25,33 @@ namespace GameCore
 
         }
 
+        private void ApplyOneTickData(ushort kMask)
+        {
+            //´¿¿Í»§¶Ë
+            TickData tickData = new TickData();
+            tickData.keyMask = kMask;
+            tickData.tickCount = GameSystem.GetInstance().GetCurTickCount();
+            tickData.uid = GameSystem.GetInstance().GetSystem<PlayerSystem>().GetMainPlayer().UID;
+        }
+
         public void OneKeyDown(InputKeyType keyType)
         {
-            keyMask |= (uint)keyType;
+            var curKeyType = (ushort)keyType;
+            if ((keyMask & curKeyType) == 0)
+            {
+                ApplyOneTickData((ushort)((1 << 8) | curKeyType));
+            }
+            keyMask |= curKeyType;
         }
 
         public void OneKeyUp(InputKeyType keyType)
         {
-            keyMask &= (~((uint)keyType));
+            var curKeyType = (ushort)keyType;
+            if ((keyMask & curKeyType) != 0)
+            {
+                ApplyOneTickData(curKeyType);
+            }
+            keyMask &= (uint)(~curKeyType);
         }
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace GameCore
 {
-    public class Player : ITick
+    public class Player : ITick, IController
     {
         private uint _uid;
         private InputManager _input;
         private PlayerInfo _playerInfo;
+        private List<TickData> _tickDatas;
         public uint UID {
             get
             {
@@ -29,6 +30,7 @@ namespace GameCore
             _uid = uid;
             _input = new InputManager();
             _playerInfo = playerInfo;
+            _tickDatas = new List<TickData>();
         }
 
         public bool IsMainPlayer()
@@ -38,7 +40,11 @@ namespace GameCore
 
         public void Tick(uint tickCount)
         {
-
+            while(_tickDatas.Count > 0 && _tickDatas[0].tickCount <= tickCount)
+            {
+                ApplyController(_tickDatas[0]);
+                _tickDatas.RemoveAt(0);
+            }
         }
         
         public void Destroy()
@@ -46,5 +52,20 @@ namespace GameCore
 
         }
 
+        public void ApplyController(TickData data)
+        {
+            
+        }
+
+        public void AppendOneTickData(TickData data)
+        {
+            var lastCount = _tickDatas.Count;
+           if(lastCount > 0 && _tickDatas[lastCount - 1].tickCount > data.tickCount)
+           {
+                throw new System.Exception(string.Format("AppendOneTickData tickCount less last one {0} {1}", _tickDatas[lastCount - 1].tickCount, data.tickCount));
+           }
+
+            _tickDatas.Add(data);
+        }
     }
 }
