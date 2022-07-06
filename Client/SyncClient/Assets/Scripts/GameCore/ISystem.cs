@@ -6,9 +6,7 @@ namespace GameCore
 {
     public interface ISystem
     {
-        //系统初始化
         void OnSystemInit();
-        //系统销毁时
         void OnSystemUnInit();
     }
 }

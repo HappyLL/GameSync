@@ -8,6 +8,7 @@ namespace GameCore
     {
         private uint _uid;
         private InputManager _input;
+        private PlayerInfo _playerInfo;
         public uint UID {
             get
             {
@@ -23,10 +24,11 @@ namespace GameCore
             }
         }
 
-        public Player(uint uid)
+        public Player(uint uid, PlayerInfo playerInfo)
         {
             _uid = uid;
             _input = new InputManager();
+            _playerInfo = playerInfo;
         }
 
 
@@ -34,5 +36,11 @@ namespace GameCore
         {
             throw new System.NotImplementedException();
         }
+        
+        public void Destroy()
+        {
+
+        }
+
     }
 }

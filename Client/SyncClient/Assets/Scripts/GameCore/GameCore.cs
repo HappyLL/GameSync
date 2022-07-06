@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GTime;
 
 namespace GameCore
 {
-    public class GameCore : ITick
+    public class GameSystem : ITick, ISystem
     {
-        //√ø“ª√Îµƒ¬ﬂº≠÷°¬ 
+        //ÊØèÁßíÂ§öÂ∞ëtick
         public uint tickPerSeconds = 30;
 
-        private ulong startLaunchTimeMs = 0;
-        private ulong curRunningTimeMs = 0;
+        private long startLaunchTimeMs = -1;
+        private long curRunningTimeMs = 0;
         private Dictionary<System.Type, ISystem> regSystemInfo;
+        private static GameSystem _ins;
 
         public void RegisterSystem(ISystem system)
         {
-
+            regSystemInfo[system.GetType()] = system;
+            system.OnSystemInit();
         }
 
         public void UnRegisterSystem(ISystem system)
         {
+            var sysType = system.GetType();
+            if (regSystemInfo.ContainsKey(sysType))
+            {
+                regSystemInfo[sysType].OnSystemUnInit();
+                regSystemInfo[sysType] = null;
+            }
 
+        }
+
+        public ISystem GetSystem(System.Type sysType){
+            regSystemInfo.TryGetValue(sysType, out ISystem system);
+            return system;
         }
 
         public void Tick(uint tickCount)
@@ -30,7 +44,36 @@ namespace GameCore
 
         public void Update()
         {
+        }
+           
+        public static GameSystem GetInstance()
+        {
+            if (_ins == null)
+            {
+                _ins = new GameSystem();
+            }
+            return _ins;
+        }
 
+        //ÂàùÂßãÂåñ
+        public void OnSystemInit()
+        {
+            Debug.Log("On GameSystem Init");
+            regSystemInfo = new Dictionary<System.Type, ISystem>();
+            startLaunchTimeMs = GameTime.clientTimeMs;
+            curRunningTimeMs = startLaunchTimeMs;
+
+            RegisterSystem(new PlayerSystem());
+        }
+
+        public void OnSystemUnInit()
+        {
+            Debug.Log("On GameSystem UnInit");
+            foreach (var systemInfo in regSystemInfo)
+            {
+                systemInfo.Value.OnSystemUnInit();
+            }
+            regSystemInfo = null;
         }
     }
 }
