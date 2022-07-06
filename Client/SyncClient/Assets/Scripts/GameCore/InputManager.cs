@@ -14,19 +14,25 @@ namespace GameCore
 
     public class InputManager: ITick
     {
+        private uint keyMask;
+        
+        public InputManager()
+        {
+            keyMask = 0;
+        }
         public void Tick(uint tickCount)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void OneKeyDown()
-        {
 
         }
 
-        public void OneKeyUp()
+        public void OneKeyDown(InputKeyType keyType)
         {
+            keyMask |= (uint)keyType;
+        }
 
+        public void OneKeyUp(InputKeyType keyType)
+        {
+            keyMask &= (~((uint)keyType));
         }
     }
 }

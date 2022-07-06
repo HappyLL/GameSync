@@ -1,15 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameCore;
 
 public class InputLogic : MonoBehaviour
 {
 
-    private KeyCode[] hookKeyCodes = {KeyCode.A, KeyCode.W, KeyCode.S, KeyCode.D };
+    private KeyCode[] hookKeyCodes = { KeyCode.A, KeyCode.W, KeyCode.S, KeyCode.D };
+    private InputKeyType[] keyTypes = {InputKeyType.LEFT, InputKeyType.UP, InputKeyType.DOWN, InputKeyType.RIGHT };
+    
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private Player GetMainPlayer()
+    {
+        var playerSystem = GameSystem.GetInstance().GetSystem<PlayerSystem>();
+        return playerSystem != null ? playerSystem.GetMainPlayer(): null;
     }
 
     private void KeyDownLogic()
@@ -18,8 +27,10 @@ public class InputLogic : MonoBehaviour
         {
             if (Input.GetKeyDown(hookKeyCodes[i]))
             {
-                Debug.Log("KeyDownLogic is "+ hookKeyCodes[i]);
-
+                Debug.Log("KeyDownLogic is " + hookKeyCodes[i]);
+                var mainPlayer = GetMainPlayer();
+                if(mainPlayer != null)
+                    mainPlayer.InputManager.OneKeyDown(keyTypes[i]);
             }
         }
     }
@@ -31,6 +42,9 @@ public class InputLogic : MonoBehaviour
             if (Input.GetKeyUp(hookKeyCodes[i]))
             {
                 Debug.Log("KeyUpLogic is " + hookKeyCodes[i]);
+                var mainPlayer = GetMainPlayer();
+                if (mainPlayer != null)
+                    mainPlayer.InputManager.OneKeyUp(keyTypes[i]);
             }
         }
     }
