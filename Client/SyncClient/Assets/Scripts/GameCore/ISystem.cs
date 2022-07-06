@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameCore
 {
-    public interface ISystem
+    public interface ISystem:ITick
     {
         void OnSystemInit();
         void OnSystemUnInit();

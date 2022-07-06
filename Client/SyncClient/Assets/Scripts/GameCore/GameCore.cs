@@ -5,7 +5,7 @@ using GTime;
 
 namespace GameCore
 {
-    public class GameSystem : ITick, ISystem
+    public class GameSystem : ISystem
     {
         //每秒多少tick
         public uint tickPerSeconds = 30;
@@ -13,11 +13,18 @@ namespace GameCore
         private long startLaunchTimeMs = -1;
         private long curRunningTimeMs = 0;
         private Dictionary<System.Type, ISystem> regSystemInfo;
+        private List<ISystem> systems;
         private static GameSystem _ins;
 
         public void RegisterSystem(ISystem system)
         {
-            regSystemInfo[system.GetType()] = system;
+            var sysType = system.GetType();
+            if (regSystemInfo.ContainsKey(sysType))
+            {
+                throw new System.Exception(string.Format("RegisterSystem system {0} repeat", sysType));
+            }
+            regSystemInfo[sysType] = system;
+            systems.Add(system);
             system.OnSystemInit();
         }
 
@@ -28,22 +35,32 @@ namespace GameCore
             {
                 regSystemInfo[sysType].OnSystemUnInit();
                 regSystemInfo[sysType] = null;
+                systems.Remove(system);
             }
-
         }
 
-        public ISystem GetSystem(System.Type sysType){
-            regSystemInfo.TryGetValue(sysType, out ISystem system);
-            return system;
+        public T GetSystem<T>(){
+            regSystemInfo.TryGetValue(typeof(T), out ISystem system);
+            return (T)system;
         }
 
         public void Tick(uint tickCount)
         {
-            throw new System.NotImplementedException();
+            foreach(var system in systems)
+            {
+                system.Tick(tickCount);
+            }
         }
 
         public void Update()
         {
+            Tick(GetCurTickCount());
+        }
+
+        public uint GetCurTickCount()
+        {
+            curRunningTimeMs = GameTime.clientTimeMs;
+            return (uint)((curRunningTimeMs - startLaunchTimeMs) * tickPerSeconds / 1000);
         }
            
         public static GameSystem GetInstance()
@@ -60,6 +77,7 @@ namespace GameCore
         {
             Debug.Log("On GameSystem Init");
             regSystemInfo = new Dictionary<System.Type, ISystem>();
+            systems = new List<ISystem>();
             startLaunchTimeMs = GameTime.clientTimeMs;
             curRunningTimeMs = startLaunchTimeMs;
 
@@ -69,6 +87,7 @@ namespace GameCore
         public void OnSystemUnInit()
         {
             Debug.Log("On GameSystem UnInit");
+            systems = null;
             foreach (var systemInfo in regSystemInfo)
             {
                 systemInfo.Value.OnSystemUnInit();

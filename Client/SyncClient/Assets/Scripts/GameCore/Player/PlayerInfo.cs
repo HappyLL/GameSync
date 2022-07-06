@@ -9,5 +9,6 @@ namespace GameCore
     public class PlayerInfo
     {
         public uint uid;
+        public bool isMainPlayer = false;
     }
 }

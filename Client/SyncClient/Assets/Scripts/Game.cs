@@ -5,18 +5,18 @@ using GameCore;
 public class Game : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         GameSystem.GetInstance().OnSystemInit();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         GameSystem.GetInstance().Update();
     }
     
-    void OnDestroy()
+    public void OnDestroy()
     {
         GameSystem.GetInstance().OnSystemUnInit();
     }

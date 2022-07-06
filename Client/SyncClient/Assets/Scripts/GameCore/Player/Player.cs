@@ -31,10 +31,14 @@ namespace GameCore
             _playerInfo = playerInfo;
         }
 
+        public bool IsMainPlayer()
+        {
+            return _playerInfo.isMainPlayer;
+        }
 
         public void Tick(uint tickCount)
         {
-            throw new System.NotImplementedException();
+
         }
         
         public void Destroy()
