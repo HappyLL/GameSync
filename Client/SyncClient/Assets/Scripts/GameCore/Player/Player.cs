@@ -64,7 +64,7 @@ namespace GameCore
                 ApplyController(_tickDatas[0]);
                 _tickDatas.RemoveAt(0);
             }
-            Debug.Log("position " + _position + " velocity " + _velocity);
+            //Debug.Log("position " + _position + " velocity " + _velocity);
         }
         
         public void Destroy()

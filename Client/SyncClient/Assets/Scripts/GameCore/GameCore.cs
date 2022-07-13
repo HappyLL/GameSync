@@ -111,6 +111,7 @@ namespace GameCore
             curRunningTimeMs = startLaunchTimeMs;
 
             RegisterSystem(new PlayerSystem());
+            RegisterSystem(new PlayerViewSystem());
         }
 
         public void OnSystemUnInit()
