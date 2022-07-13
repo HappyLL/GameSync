@@ -6,8 +6,8 @@ namespace GameCore
 {
     public enum InputKeyType
     {
-        UP = 1 << 0,
-        DOWN = 1 << 1,
+        FORWARD = 1 << 0,
+        BACK = 1 << 1,
         RIGHT = 1 << 2,
         LEFT = 1 << 3,
     }
@@ -15,10 +15,13 @@ namespace GameCore
     public class InputManager: ITick
     {
         private uint keyMask;
+        private Player _player;
         
-        public InputManager()
+        
+        public InputManager(Player player)
         {
             keyMask = 0;
+            _player = player;
         }
         public void Tick(uint tickCount)
         {
@@ -31,7 +34,8 @@ namespace GameCore
             TickData tickData = new TickData();
             tickData.keyMask = kMask;
             tickData.tickCount = GameSystem.GetInstance().GetCurTickCount();
-            tickData.uid = GameSystem.GetInstance().GetSystem<PlayerSystem>().GetMainPlayer().UID;
+            tickData.uid = _player.UID;
+            _player.AppendOneTickData(tickData);
         }
 
         public void OneKeyDown(InputKeyType keyType)
@@ -52,6 +56,11 @@ namespace GameCore
                 ApplyOneTickData(curKeyType);
             }
             keyMask &= (uint)(~curKeyType);
+        }
+
+        public void Destroy()
+        {
+            _player = null;
         }
     }
 }

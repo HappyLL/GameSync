@@ -7,7 +7,7 @@ public class InputLogic : MonoBehaviour
 {
 
     private KeyCode[] hookKeyCodes = { KeyCode.A, KeyCode.W, KeyCode.S, KeyCode.D };
-    private InputKeyType[] keyTypes = {InputKeyType.LEFT, InputKeyType.UP, InputKeyType.DOWN, InputKeyType.RIGHT };
+    private InputKeyType[] keyTypes = {InputKeyType.LEFT, InputKeyType.FORWARD, InputKeyType.BACK, InputKeyType.RIGHT };
     
     // Start is called before the first frame update
     void Start()
