@@ -11,3 +11,4 @@ Client/SyncClient/.vscode
 Server/SyncServer/bin
 Server/SyncServer/obj
 Server/SyncServer/.vs
+Server/.vs
