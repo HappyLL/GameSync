@@ -33,6 +33,8 @@ namespace GameCore
             {
                 mainPlayer = player;
             }
+
+            GameSystem.GetInstance().GetSystem<PlayerViewSystem>().RegisterPlayerView(uid);
         }
 
         public void UnRegisterPlayer(uint uid)
@@ -47,6 +49,7 @@ namespace GameCore
                 playerList.Remove(player);
                 player.Destroy();
                 players[uid] = null;
+                GameSystem.GetInstance().GetSystem<PlayerViewSystem>().UnRegisterPlayerView(uid);
             }
         }
 
@@ -72,6 +75,12 @@ namespace GameCore
         public Player GetMainPlayer()
         {
             return mainPlayer;
+        }
+
+        public Player GetTargetPlayer(uint uid)
+        {
+            players.TryGetValue(uid, out Player target);
+            return target;
         }
     }
 }

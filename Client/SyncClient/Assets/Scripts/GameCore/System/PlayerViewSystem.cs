@@ -28,6 +28,7 @@ namespace GameCore
             }
             var playerView = new PlayerView(uid, _playerPrefab);
             _uidToPlayerView[uid] = playerView;
+            _updatePlayers.Add((IUpdate)playerView);
         }
 
         public void UnRegisterPlayerView(uint uid)
@@ -36,6 +37,7 @@ namespace GameCore
             {
                 throw new Exception("UnRegisterPlayerView empty " + uid);
             }
+            _updatePlayers.Remove(_uidToPlayerView[uid]);
             _uidToPlayerView[uid].Destroy();
             _uidToPlayerView[uid] = null;
         }
@@ -53,6 +55,10 @@ namespace GameCore
 
         public void Update(float dt)
         {
+            foreach(var player in _updatePlayers)
+            {
+                player.Update(dt);
+            }
         }
     }
 }
