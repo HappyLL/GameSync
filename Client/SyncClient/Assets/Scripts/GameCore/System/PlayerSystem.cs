@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GameCore
 {
-    class PlayerSystem : ISystem
+    class PlayerSystem : ISystem, ITick
     {
         private Dictionary<uint, Player> players;
         private List<Player> playerList;
@@ -73,6 +73,5 @@ namespace GameCore
         {
             return mainPlayer;
         }
-
     }
 }

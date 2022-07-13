@@ -13,8 +13,10 @@ namespace GameCore
         private long startLaunchTimeMs = -1;
         private long curRunningTimeMs = 0;
         private Dictionary<System.Type, ISystem> regSystemInfo;
-        private List<ISystem> systems;
+        private List<ITick> tickSystems;
+        private List<IUpdate> updateSystems;
         private static GameSystem _ins;
+        private uint _curTickCount = 0;
 
         public void RegisterSystem(ISystem system)
         {
@@ -24,7 +26,14 @@ namespace GameCore
                 throw new System.Exception(string.Format("RegisterSystem system {0} repeat", sysType));
             }
             regSystemInfo[sysType] = system;
-            systems.Add(system);
+            if (typeof(ITick).IsAssignableFrom(sysType))
+            {
+                tickSystems.Add((ITick)system);
+            }
+            if (typeof(IUpdate).IsAssignableFrom(sysType))
+            {
+                updateSystems.Add((IUpdate)system);
+            }
             system.OnSystemInit();
         }
 
@@ -35,7 +44,15 @@ namespace GameCore
             {
                 regSystemInfo[sysType].OnSystemUnInit();
                 regSystemInfo[sysType] = null;
-                systems.Remove(system);
+                //systems.Remove(system);
+                if (typeof(ITick).IsAssignableFrom(sysType))
+                {
+                    tickSystems.Remove((ITick)system);
+                }
+                if (typeof(IUpdate).IsAssignableFrom(sysType))
+                {
+                    updateSystems.Remove((IUpdate)system);
+                }
             }
         }
 
@@ -46,7 +63,10 @@ namespace GameCore
 
         public void Tick(uint tickCount)
         {
-            foreach(var system in systems)
+            if (_curTickCount == tickCount)
+                return;
+            _curTickCount = tickCount;
+            foreach(var system in tickSystems)
             {
                 system.Tick(tickCount);
             }
@@ -55,12 +75,20 @@ namespace GameCore
         public void Update()
         {
             Tick(GetCurTickCount());
+
+            float dt = Time.deltaTime;
+
+            foreach(var system in updateSystems)
+            {
+                system.Update(dt);
+            }
         }
 
+        //从第一帧开始
         public uint GetCurTickCount()
         {
             curRunningTimeMs = GameTime.clientTimeMs;
-            return (uint)((curRunningTimeMs - startLaunchTimeMs) * tickPerSeconds / 1000);
+            return (uint)((curRunningTimeMs - startLaunchTimeMs) * tickPerSeconds / 1000) + 1;
         }
            
         public static GameSystem GetInstance()
@@ -77,7 +105,8 @@ namespace GameCore
         {
             Debug.Log("On GameSystem Init");
             regSystemInfo = new Dictionary<System.Type, ISystem>();
-            systems = new List<ISystem>();
+            tickSystems = new List<ITick>();
+            updateSystems = new List<IUpdate>();
             startLaunchTimeMs = GameTime.clientTimeMs;
             curRunningTimeMs = startLaunchTimeMs;
 
@@ -87,7 +116,8 @@ namespace GameCore
         public void OnSystemUnInit()
         {
             Debug.Log("On GameSystem UnInit");
-            systems = null;
+            tickSystems = null;
+            updateSystems = null;
             foreach (var systemInfo in regSystemInfo)
             {
                 systemInfo.Value.OnSystemUnInit();
