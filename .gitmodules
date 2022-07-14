@@ -1,0 +1,3 @@
+[submodule "Server/kbengine"]
+	path = Server/kbengine
+	url = git@github.com:kbengine/kbengine.git
