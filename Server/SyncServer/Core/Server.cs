@@ -16,27 +16,43 @@ namespace SyncServer.Core
         private long curServerTimeMs;
         public void Run()
         {
+
+            InstallLib();
+
             startServerTimeMs = GTime.serverTimeMs;
             curServerTimeMs = startServerTimeMs;
 
             while (true)
             {
-                Update();
+               Update();
                long dt = GTime.serverTimeMs - curServerTimeMs;
                if (dt < secondPerTick)
                {
                     //跑的快的话要休息
-                    Thread.Sleep(secondPerTick - dt);
+                    Thread.Sleep((int)(secondPerTick - dt));
                }
-                else
-                {
-
-                }
+               curServerTimeMs = GTime.serverTimeMs;
             }
         }
-        public void Update()
+        private void Update()
+        {
+            Console.WriteLine("Server Update");
+        }
+
+        private void InstallNetwork()
         {
 
+        }
+
+        private void InstallFileLog()
+        {
+
+        }
+        
+        private void InstallLib()
+        {
+            InstallFileLog();
+            InstallNetwork();
         }
 
     }
