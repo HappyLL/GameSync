@@ -65,11 +65,11 @@
     <Compile Include="Assets\Scripts\GameCore\Player\IController.cs" />
     <Compile Include="Assets\Scripts\GameCore\Transform\GVector3.cs" />
     <Compile Include="Assets\Scripts\GameCore\IUpdate.cs" />
-    <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Time\GameTime.cs" />
-    <Compile Include="Assets\Scripts\ClientGame.cs" />
+    <Compile Include="Assets\Scripts\LocalGame.cs" />
     <Compile Include="Assets\Scripts\GameCore\ITick.cs" />
+    <Compile Include="Assets\Scripts\ClientGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

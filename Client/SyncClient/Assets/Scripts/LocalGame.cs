@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameCore;
-public class Game : MonoBehaviour
+
+public class LocalGame : MonoBehaviour
 {
-    // Start is called before the first frame update
     public void Start()
     {
         GameSystem.GetInstance().OnSystemInit();
+        PlayerSystem playerSystem = GameSystem.GetInstance().GetSystem<PlayerSystem>();
+        var playerInfo = new PlayerInfo();
+        playerInfo.uid = 1;
+        playerInfo.isMainPlayer = true;
+        playerSystem.RegisterPlayer(playerInfo.uid, playerInfo);
     }
 
     // Update is called once per frame
@@ -15,7 +20,7 @@ public class Game : MonoBehaviour
     {
         GameSystem.GetInstance().Update();
     }
-    
+
     public void OnDestroy()
     {
         GameSystem.GetInstance().OnSystemUnInit();

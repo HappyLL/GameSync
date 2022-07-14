@@ -365,9 +365,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 690913615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2630f5e8e115aef468766e89b6d63b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b502bdbfb5f20e4b9cb64a49189e60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugLevel: 0
+  isMultiThreads: 1
+  ip: 127.0.0.1
+  port: 20013
+  clientType: 7
+  networkEncryptType: 0
+  syncPlayerMS: 100
+  threadUpdateHZ: 20
+  serverHeartbeatTick: 60
+  TCP_SEND_BUFFER_MAX: 1460
+  TCP_RECV_BUFFER_MAX: 1460
+  UDP_SEND_BUFFER_MAX: 1472
+  UDP_RECV_BUFFER_MAX: 1472
+  useAliasEntityID: 1
+  isOnInitCallPropertysSetMethods: 1
+  forceDisableUDP: 0
+  automaticallyUpdateSDK: 1
 --- !u!1 &1653557804
 GameObject:
   m_ObjectHideFlags: 0
