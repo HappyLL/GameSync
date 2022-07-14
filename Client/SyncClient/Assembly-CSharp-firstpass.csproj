@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B7FC66CC-1F23-9D08-8F2D-16D788138929}</ProjectGuid>
+    <ProjectGuid>{6C1FD0E7-DF0A-8601-344F-E0D78D203094}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,28 +48,71 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.11</UnityProjectGeneratorVersion>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.21f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GameCore\ISystem.cs" />
-    <Compile Include="Assets\Scripts\GameCore\System\PlayerSystem.cs" />
-    <Compile Include="Assets\Scripts\GameCore\InputManager.cs" />
-    <Compile Include="Assets\Scripts\GameCore\System\PlayerViewSystem.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Player\PlayerInfo.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Player\PlayerView.cs" />
-    <Compile Include="Assets\Scripts\GameCore\GameCore.cs" />
-    <Compile Include="Assets\Scripts\Input\InputLogic.cs" />
-    <Compile Include="Assets\Scripts\GameCore\TickData\TickData.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Player\IController.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Transform\GVector3.cs" />
-    <Compile Include="Assets\Scripts\GameCore\IUpdate.cs" />
-    <Compile Include="Assets\Scripts\Game.cs" />
-    <Compile Include="Assets\Scripts\GameCore\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\Time\GameTime.cs" />
-    <Compile Include="Assets\Scripts\ClientGame.cs" />
-    <Compile Include="Assets\Scripts\GameCore\ITick.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallNPCBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\MonsterBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallSpaceBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\MessageReaderTCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallSpacesBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketReceiverKCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Method.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\ObjectPool.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\NetworkInterfaceTCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketSenderKCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\SpacesBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\ServerErrorDescrs.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Math.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\NetworkInterfaceBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketSenderBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\NetworkInterfaceKCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketSenderTCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\MessageReaderKCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Blowfish.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallSpaceDuplicateBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\AccountBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\SpaceBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallTestBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\KBEngineArgs.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\MemoryStream.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\KBEngine.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\ScriptModule.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\TestBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Bundle.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Property.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Messages.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\GateBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EncryptionFilter.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\KBETypes.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityDef.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCall.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\KBEMain.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketReceiverBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallTestNoBaseBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\CustomDataTypes.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallAvatarBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallMonsterBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\NPCBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\TestNoBaseBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallGateBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\deps\KCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\MessageReaderBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\DataTypes.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\AvatarBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Entity.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\PacketReceiverTCP.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\SpaceDuplicateBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\ClientSDKUpdater.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Event.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Dbg.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallSpawnPointBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\SpawnPointBase.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\Profile.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityComponent.cs" />
+    <Compile Include="Assets\Plugins\kbengine_unity3d_plugins\EntityCallAccountBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -644,10 +687,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6C1FD0E7-DF0A-8601-344F-E0D78D203094}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
       <Project>{FB6F0A76-8BFC-9B2D-7976-7B19F244811C}</Project>
       <Name>Unity.VSCode.Editor</Name>
