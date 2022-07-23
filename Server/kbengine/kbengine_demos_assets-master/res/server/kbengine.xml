@@ -58,6 +58,7 @@
 		
 		<databaseInterfaces>
 			<default>
+				<port> 3306 </port>
 				<!-- <host> localhost </host> -->
 				<!-- <databaseName> kbe </databaseName> -->
 			</default>
