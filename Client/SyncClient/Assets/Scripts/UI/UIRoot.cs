@@ -8,13 +8,24 @@ public class UIRoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ShowUI("LoginUI");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void HideUI(string hideUIName)
+    {
+        if (curUI == null)
+            return;
+        if (!curUI.name.Equals(hideUIName))
+        {
+            return;
+        }
+        GameObject.Destroy(curUI);
+        curUI = null;
     }
 
     public void ShowUI(string showUIName)
@@ -35,5 +46,6 @@ public class UIRoot : MonoBehaviour
             return;
         }
         curUI = GameObject.Instantiate<GameObject>(uiPrefab);
+        curUI.transform.parent = transform;
     }
 }

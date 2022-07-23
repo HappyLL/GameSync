@@ -30,6 +30,10 @@ namespace GameState
 
         public void Destroy()
         {
+            if (_curState != null)
+            {
+                _curState.OnExit();
+            }
             foreach(var stateInfo in _stateTypeToState)
             {
                 stateInfo.Value.Destroy();
