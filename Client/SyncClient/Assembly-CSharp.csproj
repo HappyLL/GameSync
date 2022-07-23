@@ -71,6 +71,11 @@
     <Compile Include="Assets\Scripts\LocalGame.cs" />
     <Compile Include="Assets\Scripts\GameCore\ITick.cs" />
     <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameStateMgr.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameBaseState.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameNoLoginState.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameMainCityState.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameInFightState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
