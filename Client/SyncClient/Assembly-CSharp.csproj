@@ -54,9 +54,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameCore\ISystem.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameInFightState.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameBaseState.cs" />
     <Compile Include="Assets\Scripts\GameCore\System\PlayerSystem.cs" />
     <Compile Include="Assets\Scripts\GameCore\InputManager.cs" />
     <Compile Include="Assets\Scripts\GameCore\System\PlayerViewSystem.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameMainCityState.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\PlayerView.cs" />
     <Compile Include="Assets\Scripts\GameCore\GameCore.cs" />
@@ -67,15 +70,14 @@
     <Compile Include="Assets\Scripts\GameCore\IUpdate.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Time\GameTime.cs" />
+    <Compile Include="Assets\Scripts\GameState\GameStateMgr.cs" />
     <Compile Include="Assets\Scripts\ClientGame.cs" />
     <Compile Include="Assets\Scripts\LocalGame.cs" />
     <Compile Include="Assets\Scripts\GameCore\ITick.cs" />
-    <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
-    <Compile Include="Assets\Scripts\GameState\GameStateMgr.cs" />
-    <Compile Include="Assets\Scripts\GameState\GameBaseState.cs" />
     <Compile Include="Assets\Scripts\GameState\GameNoLoginState.cs" />
-    <Compile Include="Assets\Scripts\GameState\GameMainCityState.cs" />
-    <Compile Include="Assets\Scripts\GameState\GameInFightState.cs" />
+    <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
+    <Compile Include="Assets\Scripts\UI\LoginUI.cs" />
+    <Compile Include="Assets\Scripts\NetWork\Account.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

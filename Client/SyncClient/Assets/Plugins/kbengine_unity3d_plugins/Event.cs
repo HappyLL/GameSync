@@ -739,7 +739,7 @@
 				
 				EventObj eobj = doingEvents_in.First.Value;
 				
-				//Debug.Log("processInEvents:" + eobj.info.funcname + "(" + eobj.info + ")");
+				Debug.Log("processInEvents:" + eobj.info.funcname + "(" + eobj.info + ")");
 				//foreach(object v in eobj.args)
 				//{
 				//	Debug.Log("processInEvents:args=" + v);
