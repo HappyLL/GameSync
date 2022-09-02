@@ -350,11 +350,11 @@
 		{
 			//Dbg.DEBUG_MSG(className + "::set_position: " + oldValue + " => " + v); 
 			
-			if(isPlayer())
+			/*if(isPlayer())
 				KBEngineApp.app.entityServerPos(position);
 			
 			if(inWorld)
-				Event.fireOut(EventOutTypes.set_position, this);
+				Event.fireOut(EventOutTypes.set_position, this);*/
 		}
 
 		public virtual void onUpdateVolatileData()

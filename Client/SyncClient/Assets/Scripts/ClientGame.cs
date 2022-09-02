@@ -12,6 +12,12 @@ public class ClientGame : KBEMain
         GameStateMgr.GetInstance().ChangeState(GameStateType.NoLogin);
     }
 
+    public override void installEvents()
+    {
+        base.installEvents();
+        //KBEngine.Event
+    }
+
     // Update is called once per frame
     void Update()
     {

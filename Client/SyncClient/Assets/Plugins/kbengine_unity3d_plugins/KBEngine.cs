@@ -99,18 +99,17 @@
 		public Int32 entity_id = 0;
 		public string entity_type = "";
 
-		private List<Entity> _controlledEntities = new List<Entity>();
+		//private List<Entity> _controlledEntities = new List<Entity>();
 		
 		// 当前服务端最后一次同步过来的玩家位置
-		private Vector3 _entityServerPos = new Vector3(0f, 0f, 0f);
+		//private Vector3 _entityServerPos = new Vector3(0f, 0f, 0f);
 		
 		// space的数据，具体看API手册关于spaceData
 		// https://github.com/kbengine/kbengine/tree/master/docs/api
 		private Dictionary<string, string> _spacedatas = new Dictionary<string, string>();
 		
 		// 所有实体都保存于这里， 请参看API手册关于entities部分
-		// https://github.com/kbengine/kbengine/tree/master/docs/api
-		public Dictionary<Int32, Entity> entities = new Dictionary<Int32, Entity>();
+		//public Dictionary<Int32, Entity> entities = new Dictionary<Int32, Entity>();
 		
 		// 在玩家View范围小于256个实体时我们可以通过一字节索引来找到entity
 		private List<Int32> _entityIDAliasIDList = new List<Int32>();
@@ -224,10 +223,10 @@
 			return _serverdatas;
 		}
 		
-		public void entityServerPos(Vector3 pos)
+		/*public void entityServerPos(Vector3 pos)
 		{
 			_entityServerPos = pos;
-		}
+		}*/
 		
 		public void resetMessages()
 		{
@@ -300,14 +299,14 @@
 		/*
 			当前玩家entity
 		*/
-		public Entity player()
+/*		public Entity player()
 		{
 			Entity e;
 			if(entities.TryGetValue(entity_id, out e))
 				return e;
 			
 			return null;
-		}
+		}*/
 
 		public void _closeNetwork(NetworkInterfaceBase networkInterface)
 		{
@@ -959,7 +958,7 @@
 			entity_id = eid;
 			entity_type = entityType;
 			
-			if(!this.entities.ContainsKey(eid))
+			/*if(!this.entities.ContainsKey(eid))
 			{
 				ScriptModule module = null;
 				if(!EntityDef.moduledefs.TryGetValue(entityType, out module))
@@ -1007,10 +1006,10 @@
 					_bufferedCreateEntityMessages.Remove(eid);
 					entityMessage.reclaimObject();
 				}
-			}
+			}*/
 		}
 		
-		public Entity findEntity(Int32 entityID)
+/*		public Entity findEntity(Int32 entityID)
 		{
 			Entity entity = null;
 			
@@ -1020,7 +1019,7 @@
 			}
 			
 			return entity;
-		}
+		}*/
 
 		/*
 			通过流数据获得View实体的ID
@@ -1071,7 +1070,7 @@
 		
 		public void onUpdatePropertys_(Int32 eid, MemoryStream stream)
 		{
-			Entity entity = null;
+/*			Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
 			{
@@ -1090,7 +1089,7 @@
 				return;
 			}
 			
-			entity.onUpdatePropertys(stream);
+			entity.onUpdatePropertys(stream);*/
 		}
 
 		/*
@@ -1113,23 +1112,23 @@
 	
 		public void onRemoteMethodCall_(Int32 eid, MemoryStream stream)
 		{
-			Entity entity = null;
-			
-			if(!entities.TryGetValue(eid, out entity))
-			{
-				Dbg.ERROR_MSG("KBEngine::Client_onRemoteMethodCall: entity(" + eid + ") not found!");
-				return;
-			}
-			
-			entity.onRemoteMethodCall(stream);
-		}
+/*            Entity entity = null;
+
+            if (!entities.TryGetValue(eid, out entity))
+            {
+                Dbg.ERROR_MSG("KBEngine::Client_onRemoteMethodCall: entity(" + eid + ") not found!");
+                return;
+            }
+
+            entity.onRemoteMethodCall(stream);*/
+        }
 
 		/*
 			服务端通知一个实体进入了世界(如果实体是当前玩家则玩家第一次在一个space中创建了， 如果是其他实体则是其他实体进入了玩家的View)
 		*/
 		public void Client_onEntityEnterWorld(MemoryStream stream)
 		{
-			Int32 eid = stream.readInt32();
+			/*Int32 eid = stream.readInt32();
 			if(entity_id > 0 && entity_id != eid)
 				_entityIDAliasIDList.Add(eid);
 			
@@ -1216,7 +1215,7 @@
 					if(_args.isOnInitCallPropertysSetMethods)
 						entity.callPropertysSetMethods();
 				}
-			}
+			}*/
 		}
 
 		/*
@@ -1233,7 +1232,7 @@
 		*/
 		public void Client_onEntityLeaveWorld(Int32 eid)
 		{
-			Entity entity = null;
+			/*Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
 			{
@@ -1257,7 +1256,7 @@
 				entities.Remove(eid);
 				entity.destroy();
 				_entityIDAliasIDList.Remove(eid);
-			}
+			}*/
 		}
 
 		/*
@@ -1265,7 +1264,7 @@
 		*/
 		public void Client_onEntityEnterSpace(MemoryStream stream)
 		{
-			Int32 eid = stream.readInt32();
+/*			Int32 eid = stream.readInt32();
 			spaceID = stream.readUint32();
 			
 			sbyte isOnGround = 1;
@@ -1283,7 +1282,7 @@
 			
 			entity.isOnGround = isOnGround > 0;
 			_entityServerPos = entity.position;
-			entity.enterSpace();
+			entity.enterSpace();*/
 		}
 		
 		/*
@@ -1291,7 +1290,7 @@
 		*/
 		public void Client_onEntityLeaveSpace(Int32 eid)
 		{
-			Entity entity = null;
+/*			Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
 			{
@@ -1300,7 +1299,7 @@
 			}
 			
 			entity.leaveSpace();
-			clearSpace(false);
+			clearSpace(false);*/
 		}
 	
 		/*
@@ -1327,7 +1326,7 @@
 		*/
 		public void Client_onControlEntity(Int32 eid, sbyte isControlled)
 		{
-			Entity entity = null;
+			/*Entity entity = null;
 
 			if (!entities.TryGetValue(eid, out entity))
 			{
@@ -1360,7 +1359,7 @@
 			catch (Exception e)
 			{
 				Dbg.ERROR_MSG(string.Format("KBEngine::Client_onControlEntity: entity id = '{0}', is controlled = '{1}', error = '{1}'", eid, isCont, e));
-			}
+			}*/
 		}
 
 		/*
@@ -1368,7 +1367,7 @@
 		*/
 		public void updatePlayerToServer()
 		{
-			if(_updatePlayerToServerPeroid <= 0.01f || spaceID == 0)
+/*			if(_updatePlayerToServerPeroid <= 0.01f || spaceID == 0)
 			{
 				return;
 			}
@@ -1422,11 +1421,11 @@
 				bundle.writeFloat((float)z);
 				bundle.writeUint8((Byte)(playerEntity.isOnGround == true ? 1 : 0));
 				bundle.writeUint32(spaceID);
-				bundle.send(_networkInterface);
-			}
+				bundle.send(_networkInterface);*/
+			//}
 
 			// 开始同步所有被控制了的entity的位置
-			for (int i = 0; i < _controlledEntities.Count; ++i)
+			/*for (int i = 0; i < _controlledEntities.Count; ++i)
 			{
 				var entity = _controlledEntities[i];
 				position = entity.position;
@@ -1469,7 +1468,7 @@
 					bundle.writeUint32(spaceID);
 					bundle.send(_networkInterface);
 				}
-			}
+			}*/
 		}
 
 		/*
@@ -1497,7 +1496,7 @@
 		
 		public void clearEntities(bool isall)
 		{
-			_controlledEntities.Clear();
+			/*_controlledEntities.Clear();
 
 			if (!isall)
 			{
@@ -1528,7 +1527,7 @@
 				}  
 		
 				entities.Clear();
-			}
+			}*/
 		}
 		
 		/*
@@ -1592,7 +1591,7 @@
 		{
 			Dbg.DEBUG_MSG("KBEngine::Client_onEntityDestroyed: entity(" + eid + ")");
 			
-			Entity entity = null;
+/*			Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
 			{
@@ -1612,7 +1611,7 @@
 				Event.fireOut(EventOutTypes.onLoseControlledEntity, entity);
 
 			entities.Remove(eid);
-			entity.destroy();
+			entity.destroy();*/
 		}
 		
 		/*
@@ -1620,7 +1619,7 @@
 		*/
 		public void Client_onUpdateBasePos(float x, float y, float z)
 		{
-			_entityServerPos.x = x;
+/*			_entityServerPos.x = x;
 			_entityServerPos.y = y;
 			_entityServerPos.z = z;
 
@@ -1630,12 +1629,12 @@
 				entity.position.Set(_entityServerPos.x, _entityServerPos.y, _entityServerPos.z);
 				Event.fireOut(EventOutTypes.updatePosition, entity);
 				entity.onUpdateVolatileData();
-			}
+			}*/
 		}
 		
 		public void Client_onUpdateBasePosXZ(float x, float z)
 		{
-			_entityServerPos.x = x;
+/*			_entityServerPos.x = x;
 			_entityServerPos.z = z;
 
 			var entity = player();
@@ -1645,12 +1644,12 @@
 				entity.position.z = _entityServerPos.z;
 				Event.fireOut(EventOutTypes.updatePosition, entity);
 				entity.onUpdateVolatileData();
-			}
+			}*/
 		}
 
 		public void Client_onUpdateBaseDir(MemoryStream stream)
 		{
-			float yaw, pitch, roll;
+/*			float yaw, pitch, roll;
 			yaw = stream.readFloat() * 360 / ((float)System.Math.PI * 2);
 			pitch = stream.readFloat() * 360 / ((float)System.Math.PI * 2);
 			roll = stream.readFloat() * 360 / ((float)System.Math.PI * 2);
@@ -1661,19 +1660,19 @@
 				entity.direction.Set(roll, pitch, yaw);
 				Event.fireOut(EventOutTypes.set_direction, entity);
 				entity.onUpdateVolatileData();
-			}
+			}*/
 		}
 
 		public void Client_onUpdateData(MemoryStream stream)
 		{
-			Int32 eid = getViewEntityIDFromStream(stream);
+/*			Int32 eid = getViewEntityIDFromStream(stream);
 			Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
 			{
 				Dbg.ERROR_MSG("KBEngine::Client_onUpdateData: entity(" + eid + ") not found!");
 				return;
-			}
+			}*/
 		}
 
 		/*
@@ -1682,7 +1681,7 @@
 		*/
 		public void Client_onSetEntityPosAndDir(MemoryStream stream)
 		{
-			Int32 eid = stream.readInt32();
+/*			Int32 eid = stream.readInt32();
 			Entity entity = null;
 			
 			if(!entities.TryGetValue(eid, out entity))
@@ -1706,7 +1705,7 @@
 			entity._entityLastLocalDir = entity.direction;
 			
 			entity.onDirectionChanged(old_direction);
-			entity.onPositionChanged(old_position);		
+			entity.onPositionChanged(old_position);*/		
 		}
 		
 		public void Client_onUpdateData_ypr(MemoryStream stream)
@@ -2239,7 +2238,7 @@
 
 		private void _updateVolatileData(Int32 entityID, float x, float y, float z, float yaw, float pitch, float roll, sbyte isOnGround, bool isOptimized)
 		{
-			Entity entity = null;
+			/*Entity entity = null;
 
 			if(!entities.TryGetValue(entityID, out entity))
 			{
@@ -2298,7 +2297,7 @@
 			}
 			
 			if(done)
-				entity.onUpdateVolatileData();
+				entity.onUpdateVolatileData();*/
 		}
 		
 		/*

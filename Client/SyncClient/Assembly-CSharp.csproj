@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.21f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\GameCore\ISystem.cs" />
     <Compile Include="Assets\Scripts\GameState\GameInFightState.cs" />
     <Compile Include="Assets\Scripts\GameState\GameBaseState.cs" />
@@ -66,6 +69,7 @@
     <Compile Include="Assets\Scripts\Input\InputLogic.cs" />
     <Compile Include="Assets\Scripts\GameCore\TickData\TickData.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\IController.cs" />
+    <Compile Include="Assets\Scripts\UI\LoginUI.cs" />
     <Compile Include="Assets\Scripts\GameCore\Transform\GVector3.cs" />
     <Compile Include="Assets\Scripts\GameCore\IUpdate.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\Player.cs" />
@@ -75,9 +79,8 @@
     <Compile Include="Assets\Scripts\LocalGame.cs" />
     <Compile Include="Assets\Scripts\GameCore\ITick.cs" />
     <Compile Include="Assets\Scripts\GameState\GameNoLoginState.cs" />
+    <Compile Include="Assets\Scripts\KBE\Account.cs" />
     <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
-    <Compile Include="Assets\Scripts\UI\LoginUI.cs" />
-    <Compile Include="Assets\Scripts\NetWork\Account.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

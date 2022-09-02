@@ -6,10 +6,16 @@ namespace KBEngine
     {
         public Account():base()
         {
+        }
+
+        public override void __init__()
+        {
 
         }
+
         public override void onCreateAvatarResult(byte arg1, AVATAR_INFOS arg2)
         {
+
         }
 
         public override void onRemoveAvatar(ulong arg1)
