@@ -49,6 +49,8 @@ namespace KBE
         {
             Debug.Log("OnCreateAccountProxy");
             _accountProxy = new AccountProxy();
+            _accountProxy.InitFromData();
+            _accountProxy.BaseCall("reqAvatarList");
         }
 
         public void OnDestroyAccountProxy()

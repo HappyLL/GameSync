@@ -213,6 +213,10 @@
         /// 销毁客户端代理
         /// </summary>
         public const string onDestroyAccountProxy = "onDestroyAccountProxy";
+        /// <summary>
+        /// rpc回调
+        /// </summary>
+        public const string onBaseCallResponse = "onBaseCallResponse";
     };
 
     /// <summary>
@@ -264,6 +268,8 @@
         /// <para> param1(string): emailAddress</para>
         /// </summary>
         public const string bindAccountEmail = "bindAccountEmail";
+
+        public const string baseCall = "baseCall";
     };
 
     /// <summary>

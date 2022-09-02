@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Reflection;
 
 namespace KBEngine
 {
@@ -16,11 +17,24 @@ namespace KBEngine
 
         private void InstallEvents()
         {
-
+            Event.registerIn(EventInTypes.baseCall, this, "BaseCall");
         }
 
         private void UnInstallEvents()
         {
+            Event.deregisterIn(EventInTypes.baseCall, this, "BaseCall");
+        }
+
+        public void BaseCall(string callName, params object[] args)
+        {
+            Dbg.INFO_MSG("BaseCall " + callName);
+            MethodInfo method = baseEntityCall.GetType().GetMethod(callName, BindingFlags.Public | BindingFlags.Instance);
+            if(method == null)
+            {
+                Dbg.ERROR_MSG($"BaseCall error empty method");
+                return;
+            }
+            method.Invoke(baseEntityCall, args);
         }
 
         public override void onDestroy()
@@ -41,7 +55,7 @@ namespace KBEngine
 
         public override void onReqAvatarList(AVATAR_INFOS_LIST arg1)
         {
-            throw new System.NotImplementedException();
+            Event.fireOut(EventOutTypes.onBaseCallResponse, "onReqAvatarList", arg1 );
         }
     }
 }
