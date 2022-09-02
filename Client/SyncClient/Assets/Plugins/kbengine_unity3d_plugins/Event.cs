@@ -204,6 +204,15 @@
         /// <para> param1(uint16): resouce id</para>
         /// </summary>
         public const string onStreamDataCompleted = "onStreamDataCompleted";
+
+        /// <summary>
+        /// 创建客户端代理
+        /// </summary>
+        public const string onCreateAccountProxy = "onCreateAccountProxy";
+        /// <summary>
+        /// 销毁客户端代理
+        /// </summary>
+        public const string onDestroyAccountProxy = "onDestroyAccountProxy";
     };
 
     /// <summary>

@@ -10,7 +10,23 @@ namespace KBEngine
 
         public override void __init__()
         {
+            InstallEvents();
+            Event.fireOut(EventOutTypes.onCreateAccountProxy);
+        }
 
+        private void InstallEvents()
+        {
+
+        }
+
+        private void UnInstallEvents()
+        {
+        }
+
+        public override void onDestroy()
+        {
+            base.onDestroy();
+            UnInstallEvents();
         }
 
         public override void onCreateAvatarResult(byte arg1, AVATAR_INFOS arg2)

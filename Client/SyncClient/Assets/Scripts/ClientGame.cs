@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameState;
+using KBE;
 
 public class ClientGame : KBEMain
 {
@@ -9,6 +10,9 @@ public class ClientGame : KBEMain
     void Start()
     {
         base.Start();
+
+        ProxyMgr.GetInstance().Init();
+
         GameStateMgr.GetInstance().ChangeState(GameStateType.NoLogin);
     }
 
@@ -27,6 +31,7 @@ public class ClientGame : KBEMain
     void OnDestroy()
     {
         base.OnDestroy();
+        ProxyMgr.GetInstance().UnInit();
         GameStateMgr.GetInstance().Destroy();    
     }
 
