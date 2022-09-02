@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Reflection;
+using System.Linq;
 
 namespace KBEngine
 {
@@ -55,7 +56,7 @@ namespace KBEngine
 
         public override void onReqAvatarList(AVATAR_INFOS_LIST arg1)
         {
-            Event.fireOut(EventOutTypes.onBaseCallResponse, "onReqAvatarList", arg1 );
+            Event.fireOut(EventOutTypes.onBaseCallResponse, "onReqAvatarList", new object[] { arg1} );
         }
     }
 }

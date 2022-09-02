@@ -44,6 +44,7 @@ namespace KBE
                 Debug.LogError($"OnBaseCallResponse {callName} empty");
                 return;
             }
+            Debug.Log("OnBaseCallResponse success " + callName);
             methodInfo.Invoke(this, args);
         }
     }

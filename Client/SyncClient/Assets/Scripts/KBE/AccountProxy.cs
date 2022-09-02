@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using KBEngine;
 
 namespace KBE
 {
@@ -14,9 +15,9 @@ namespace KBE
             base.OnDestroy();
         }
 
-        public void onReqAvatarList(object[] args)
+        public void onReqAvatarList(AVATAR_INFOS_LIST avatarInfoList)
         {
-            Debug.Log("onReqAvatarList is " + args.Length);
+            Debug.Log("onReqAvatarList is " + avatarInfoList.values.Count);
         }
     }
 }
