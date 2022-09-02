@@ -21,7 +21,7 @@ namespace KBE
             KBEngine.Event.deregisterOut(EventOutTypes.onBaseCallResponse, this, "OnBaseCallResponse");
         }
 
-        public virtual void InitFromData() {
+        public virtual void InitFromData(Dictionary<string, object> data) {
             InstallEvents();
         }
         protected virtual void OnDestroy() {

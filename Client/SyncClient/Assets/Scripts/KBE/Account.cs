@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace KBEngine
 {
@@ -13,7 +14,7 @@ namespace KBEngine
         public override void __init__()
         {
             InstallEvents();
-            Event.fireOut(EventOutTypes.onCreateAccountProxy);
+            Event.fireOut(EventOutTypes.onCreateAccountProxy, new Dictionary<string, object>() { { "accountName", this.} });
         }
 
         private void InstallEvents()
