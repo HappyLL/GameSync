@@ -213,6 +213,15 @@
         /// 销毁客户端代理
         /// </summary>
         public const string onDestroyAccountProxy = "onDestroyAccountProxy";
+
+        /// <summary>
+        /// 创建Avatar代理
+        /// </summary>
+        public const string onCreateAvatarProxy = "onCreateAvatarProxy";
+        /// <summary>
+        /// 销毁Avatar代理
+        /// </summary>
+        public const string onDestroyAvatarProxy = "onDestroyAvatarProxy";
         /// <summary>
         /// rpc回调
         /// </summary>

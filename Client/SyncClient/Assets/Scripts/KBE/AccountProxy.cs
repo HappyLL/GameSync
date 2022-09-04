@@ -8,7 +8,7 @@ using KBEngine;
 
 namespace KBE
 {
-    class AccountProxy: ProxyBase
+    public class AccountProxy: ProxyBase
     {
         public string accountName;
         public override void InitFromData(Dictionary<string, object> data)

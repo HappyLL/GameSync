@@ -397,6 +397,8 @@ namespace KBEngine
 						string oldval_name = name;
 						name = stream.readUnicode();
 
+						Debug.Log("name changed " + name);
+
 						if(prop.isBase())
 						{
 							if(inited)

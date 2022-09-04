@@ -11,7 +11,14 @@ namespace KBEngine
         public override void __init__()
         {
             base.__init__();
-            Dbg.INFO_MSG("Avatar Init Complete");
+            Event.fireOut(EventOutTypes.onCreateAvatarProxy, new Dictionary<string, object>() { { "avatarName", name}, { "avatarId", this.uid} });
+            Dbg.INFO_MSG("Avatar Init Complete " + this.name);
+        }
+
+        public override void onDestroy()
+        {
+            Event.fireOut(EventOutTypes.onDestroyAvatarProxy);
+            base.onDestroy();
         }
 
         public override void dialog_addOption(byte arg1, uint arg2, string arg3, int arg4)

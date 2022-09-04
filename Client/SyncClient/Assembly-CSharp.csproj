@@ -82,6 +82,8 @@
     <Compile Include="Assets\Scripts\KBE\ProxyMgr.cs" />
     <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
     <Compile Include="Assets\Scripts\KBE\Avatar.cs" />
+    <Compile Include="Assets\Scripts\KBE\AvatarProxy.cs" />
+    <Compile Include="Assets\Scripts\UI\MainCityUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

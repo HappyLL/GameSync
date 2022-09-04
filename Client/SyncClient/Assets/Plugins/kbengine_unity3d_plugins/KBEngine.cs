@@ -2239,7 +2239,7 @@
 
 		private void _updateVolatileData(Int32 entityID, float x, float y, float z, float yaw, float pitch, float roll, sbyte isOnGround, bool isOptimized)
 		{
-			Entity entity = null;
+			/*Entity entity = null;
 
 			if(!entities.TryGetValue(entityID, out entity))
 			{
@@ -2298,7 +2298,7 @@
 			}
 			
 			if(done)
-				entity.onUpdateVolatileData();
+				entity.onUpdateVolatileData();*/
 		}
 		
 		/*

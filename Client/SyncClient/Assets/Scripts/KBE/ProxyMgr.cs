@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using KBEngine;
 using UnityEngine;
+using GameState;
 
 namespace KBE
 {
@@ -12,6 +13,7 @@ namespace KBE
     {
         private static ProxyMgr _ins = null;
         private AccountProxy _accountProxy = null;
+        private AvatarProxy _avatarProxy = null;
 
         private ProxyMgr()
         {
@@ -28,19 +30,32 @@ namespace KBE
         {
             KBEngine.Event.registerOut(KBEngine.EventOutTypes.onCreateAccountProxy, this, "OnCreateAccountProxy");
             KBEngine.Event.registerOut(KBEngine.EventOutTypes.onDestroyAccountProxy, this, "OnDestroyAccountProxy");
+            KBEngine.Event.registerOut(KBEngine.EventOutTypes.onCreateAvatarProxy, this, "OnCreateAvatarProxy");
+            KBEngine.Event.registerOut(KBEngine.EventOutTypes.onDestroyAvatarProxy, this, "OnDestroyAvatarProxy");
         }
 
         private void UnInstallEvents()
         {
             KBEngine.Event.deregisterOut(KBEngine.EventOutTypes.onCreateAccountProxy, this, "OnCreateAccountProxy");
             KBEngine.Event.deregisterOut(KBEngine.EventOutTypes.onDestroyAccountProxy, this, "OnDestroyAccountProxy");
+            KBEngine.Event.deregisterOut(KBEngine.EventOutTypes.onCreateAvatarProxy, this, "OnCreateAvatarProxy");
+            KBEngine.Event.deregisterOut(KBEngine.EventOutTypes.onDestroyAvatarProxy, this, "OnDestroyAvatarProxy");
         }
 
-        public ProxyBase GetProxy()
+        public AccountProxy GetAccountProxy()
         {
             if (_accountProxy != null)
             {
                 return _accountProxy;
+            }
+            return null;
+        }
+
+        public AvatarProxy GetAvatarProxy()
+        {
+            if (_avatarProxy != null)
+            {
+                return _avatarProxy;
             }
             return null;
         }
@@ -57,6 +72,19 @@ namespace KBE
         {
             _accountProxy.Destroy();
             _accountProxy = null;
+        }
+
+        public void OnCreateAvatarProxy(Dictionary<string, object> info)
+        {
+            Debug.Log("OnCreateAvatarProxy");
+            _avatarProxy = new AvatarProxy();
+            _avatarProxy.InitFromData(info);
+            GameStateMgr.GetInstance().ChangeState(GameStateType.MainCity);
+        }
+
+        public void OnDestroyAvatarProxy()
+        {
+
         }
 
         public void Init()
