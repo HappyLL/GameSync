@@ -140,7 +140,7 @@ namespace KBEngine
 
 			switch(method.methodUtype)
 			{
-				case 34:
+				case 29:
 					Int32 recvDamage_arg1 = stream.readInt32();
 					Int32 recvDamage_arg2 = stream.readInt32();
 					Int32 recvDamage_arg3 = stream.readInt32();
@@ -339,7 +339,7 @@ namespace KBEngine
 						}
 
 						break;
-					case 32:
+					case 22:
 						Byte oldval_moveSpeed = moveSpeed;
 						moveSpeed = stream.readUint8();
 

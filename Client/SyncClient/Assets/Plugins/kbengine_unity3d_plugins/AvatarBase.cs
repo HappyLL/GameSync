@@ -27,9 +27,6 @@ namespace KBEngine
 		public virtual void onMPChanged(Int32 oldValue) {}
 		public Int32 MP_Max = 0;
 		public virtual void onMP_MaxChanged(Int32 oldValue) {}
-		public TestBase component1 = null;
-		public TestBase component2 = null;
-		public TestNoBaseBase component3 = null;
 		public Int32 forbids = 0;
 		public virtual void onForbidsChanged(Int32 oldValue) {}
 		public UInt16 level = 0;
@@ -65,117 +62,29 @@ namespace KBEngine
 
 		public AvatarBase()
 		{
-			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				Type entityComponentScript = ass.GetType("KBEngine.Test");
-				if(entityComponentScript != null)
-				{
-					component1 = (TestBase)Activator.CreateInstance(entityComponentScript);
-					component1.owner = this;
-					component1.entityComponentPropertyID = 16;
-					component1.name_ = "Test";
-				}
-			}
-
-			if(component1 == null)
-				throw new Exception("Please inherit and implement, such as: \"class Test : TestBase\"");
-
-			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				Type entityComponentScript = ass.GetType("KBEngine.Test");
-				if(entityComponentScript != null)
-				{
-					component2 = (TestBase)Activator.CreateInstance(entityComponentScript);
-					component2.owner = this;
-					component2.entityComponentPropertyID = 21;
-					component2.name_ = "Test";
-				}
-			}
-
-			if(component2 == null)
-				throw new Exception("Please inherit and implement, such as: \"class Test : TestBase\"");
-
-			foreach (System.Reflection.Assembly ass in AppDomain.CurrentDomain.GetAssemblies())
-			{
-				Type entityComponentScript = ass.GetType("KBEngine.TestNoBase");
-				if(entityComponentScript != null)
-				{
-					component3 = (TestNoBaseBase)Activator.CreateInstance(entityComponentScript);
-					component3.owner = this;
-					component3.entityComponentPropertyID = 22;
-					component3.name_ = "TestNoBase";
-				}
-			}
-
-			if(component3 == null)
-				throw new Exception("Please inherit and implement, such as: \"class TestNoBase : TestNoBaseBase\"");
-
 		}
 
 		public override void onComponentsEnterworld()
 		{
-			component1.onEnterworld();
-			component2.onEnterworld();
-			component3.onEnterworld();
 		}
 
 		public override void onComponentsLeaveworld()
 		{
-			component1.onLeaveworld();
-			component2.onLeaveworld();
-			component3.onLeaveworld();
-		}
-
-		public override List<EntityComponent> getComponents(string componentName, bool all)
-		{
-			List<EntityComponent> founds = new List<EntityComponent>();
-
-			if (component1.name_ == componentName)
-			{
-				founds.Add(component1);
-				if (!all)
-					return founds;
-			}
-
-			if (component2.name_ == componentName)
-			{
-				founds.Add(component2);
-				if (!all)
-					return founds;
-			}
-
-			if (component3.name_ == componentName)
-			{
-				founds.Add(component3);
-				if (!all)
-					return founds;
-			}
-
-			return founds;
 		}
 
 		public override void onGetBase()
 		{
 			baseEntityCall = new EntityBaseEntityCall_AvatarBase(id, className);
-			component1.onGetBase();
-			component2.onGetBase();
-			component3.onGetBase();
 		}
 
 		public override void onGetCell()
 		{
 			cellEntityCall = new EntityCellEntityCall_AvatarBase(id, className);
-			component1.onGetCell();
-			component2.onGetCell();
-			component3.onGetCell();
 		}
 
 		public override void onLoseCell()
 		{
 			cellEntityCall = null;
-			component1.onLoseCell();
-			component2.onLoseCell();
-			component3.onLoseCell();
 		}
 
 		public override EntityCall getBaseEntityCall()
@@ -190,16 +99,10 @@ namespace KBEngine
 
 		public override void attachComponents()
 		{
-			component1.onAttached(this);
-			component2.onAttached(this);
-			component3.onAttached(this);
 		}
 
 		public override void detachComponents()
 		{
-			component1.onDetached(this);
-			component2.onDetached(this);
-			component3.onDetached(this);
 		}
 
 		public override void onRemoteMethodCall(MemoryStream stream)
@@ -238,15 +141,6 @@ namespace KBEngine
 				Property pComponentPropertyDescription = sm.idpropertys[componentPropertyUType];
 				switch(pComponentPropertyDescription.properUtype)
 				{
-					case 16:
-						component1.onRemoteMethodCall(methodUtype, stream);
-						break;
-					case 21:
-						component2.onRemoteMethodCall(methodUtype, stream);
-						break;
-					case 22:
-						component3.onRemoteMethodCall(methodUtype, stream);
-						break;
 					default:
 						break;
 				}
@@ -330,15 +224,6 @@ namespace KBEngine
 					Property pComponentPropertyDescription = pdatas[_t_utype];
 					switch(pComponentPropertyDescription.properUtype)
 					{
-						case 16:
-							component1.onUpdatePropertys(_t_child_utype, stream, -1);
-							break;
-						case 21:
-							component2.onUpdatePropertys(_t_child_utype, stream, -1);
-							break;
-						case 22:
-							component3.onUpdatePropertys(_t_child_utype, stream, -1);
-							break;
 						default:
 							break;
 					}
@@ -411,15 +296,6 @@ namespace KBEngine
 								onMP_MaxChanged(oldval_MP_Max);
 						}
 
-						break;
-					case 16:
-						component1.createFromStream(stream);
-						break;
-					case 21:
-						component2.createFromStream(stream);
-						break;
-					case 22:
-						component3.createFromStream(stream);
 						break;
 					case 40001:
 						Vector3 oldval_direction = direction;
@@ -743,12 +619,6 @@ namespace KBEngine
 				}
 			}
 
-			component1.callPropertysSetMethods();
-
-			component2.callPropertysSetMethods();
-
-			component3.callPropertysSetMethods();
-
 			Vector3 oldval_direction = direction;
 			Property prop_direction = pdatas[2];
 			if(prop_direction.isBase())
@@ -771,7 +641,7 @@ namespace KBEngine
 			}
 
 			Int32 oldval_forbids = forbids;
-			Property prop_forbids = pdatas[11];
+			Property prop_forbids = pdatas[8];
 			if(prop_forbids.isBase())
 			{
 				if(inited && !inWorld)
@@ -792,7 +662,7 @@ namespace KBEngine
 			}
 
 			UInt16 oldval_level = level;
-			Property prop_level = pdatas[12];
+			Property prop_level = pdatas[9];
 			if(prop_level.isBase())
 			{
 				if(inited && !inWorld)
@@ -813,7 +683,7 @@ namespace KBEngine
 			}
 
 			UInt32 oldval_modelID = modelID;
-			Property prop_modelID = pdatas[13];
+			Property prop_modelID = pdatas[10];
 			if(prop_modelID.isBase())
 			{
 				if(inited && !inWorld)
@@ -834,7 +704,7 @@ namespace KBEngine
 			}
 
 			Byte oldval_modelScale = modelScale;
-			Property prop_modelScale = pdatas[14];
+			Property prop_modelScale = pdatas[11];
 			if(prop_modelScale.isBase())
 			{
 				if(inited && !inWorld)
@@ -855,7 +725,7 @@ namespace KBEngine
 			}
 
 			Byte oldval_moveSpeed = moveSpeed;
-			Property prop_moveSpeed = pdatas[15];
+			Property prop_moveSpeed = pdatas[12];
 			if(prop_moveSpeed.isBase())
 			{
 				if(inited && !inWorld)
@@ -876,7 +746,7 @@ namespace KBEngine
 			}
 
 			string oldval_name = name;
-			Property prop_name = pdatas[16];
+			Property prop_name = pdatas[13];
 			if(prop_name.isBase())
 			{
 				if(inited && !inWorld)
@@ -897,7 +767,7 @@ namespace KBEngine
 			}
 
 			UInt16 oldval_own_val = own_val;
-			Property prop_own_val = pdatas[17];
+			Property prop_own_val = pdatas[14];
 			if(prop_own_val.isBase())
 			{
 				if(inited && !inWorld)
@@ -939,7 +809,7 @@ namespace KBEngine
 			}
 
 			UInt32 oldval_spaceUType = spaceUType;
-			Property prop_spaceUType = pdatas[18];
+			Property prop_spaceUType = pdatas[15];
 			if(prop_spaceUType.isBase())
 			{
 				if(inited && !inWorld)
@@ -960,7 +830,7 @@ namespace KBEngine
 			}
 
 			SByte oldval_state = state;
-			Property prop_state = pdatas[19];
+			Property prop_state = pdatas[16];
 			if(prop_state.isBase())
 			{
 				if(inited && !inWorld)
@@ -981,7 +851,7 @@ namespace KBEngine
 			}
 
 			Byte oldval_subState = subState;
-			Property prop_subState = pdatas[20];
+			Property prop_subState = pdatas[17];
 			if(prop_subState.isBase())
 			{
 				if(inited && !inWorld)
@@ -1002,7 +872,7 @@ namespace KBEngine
 			}
 
 			UInt32 oldval_uid = uid;
-			Property prop_uid = pdatas[21];
+			Property prop_uid = pdatas[18];
 			if(prop_uid.isBase())
 			{
 				if(inited && !inWorld)
@@ -1023,7 +893,7 @@ namespace KBEngine
 			}
 
 			UInt32 oldval_utype = utype;
-			Property prop_utype = pdatas[22];
+			Property prop_utype = pdatas[19];
 			if(prop_utype.isBase())
 			{
 				if(inited && !inWorld)
