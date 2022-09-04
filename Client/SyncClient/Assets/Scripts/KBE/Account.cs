@@ -14,7 +14,8 @@ namespace KBEngine
         public override void __init__()
         {
             InstallEvents();
-            Event.fireOut(EventOutTypes.onCreateAccountProxy, new Dictionary<string, object>() { { "accountName", this.} });
+            Event.fireOut(EventOutTypes.onCreateAccountProxy, new Dictionary<string, object>() { { "accountName", KBEngineApp.app.username} });
+            Dbg.INFO_MSG("Account Init complete");
         }
 
         private void InstallEvents()
@@ -41,13 +42,16 @@ namespace KBEngine
 
         public override void onDestroy()
         {
+            Dbg.INFO_MSG("Account Destroy " + this.id);
+            Event.fireOut(EventOutTypes.onDestroyAccountProxy);
             base.onDestroy();
             UnInstallEvents();
         }
 
         public override void onCreateAvatarResult(byte arg1, AVATAR_INFOS arg2)
         {
-
+            Dbg.INFO_MSG("onCreateAvatarResult " + arg1);
+            Event.fireOut(EventOutTypes.onBaseCallResponse, "onCreateAvatarResult", new object[] { arg1, arg2 });
         }
 
         public override void onRemoveAvatar(ulong arg1)

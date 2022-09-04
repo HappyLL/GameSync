@@ -45,11 +45,11 @@ namespace KBE
             return null;
         }
 
-        public void OnCreateAccountProxy()
+        public void OnCreateAccountProxy(Dictionary<string, object> info)
         {
             Debug.Log("OnCreateAccountProxy");
             _accountProxy = new AccountProxy();
-            _accountProxy.InitFromData();
+            _accountProxy.InitFromData(info);
             _accountProxy.BaseCall("reqAvatarList");
         }
 
