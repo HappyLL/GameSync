@@ -45,7 +45,6 @@ Thumbs.db
 /kbe/bin/server/loginapp
 /kbe/bin/server/machine
 /kbe/src/.vs
-/kbe/bin/server/*.dll
 /kbe/res/scripts/common/lib-dynload/
 /kbe/src/lib/dependencies/apr-util/test/Makefile
 /kbe/src/lib/dependencies/apr/test/Makefile

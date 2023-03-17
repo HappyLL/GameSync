@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\GameCore\Player\PlayerView.cs" />
     <Compile Include="Assets\Scripts\GameCore\GameCore.cs" />
     <Compile Include="Assets\Scripts\Input\InputLogic.cs" />
+    <Compile Include="Assets\Scripts\KBE\Avatar.cs" />
+    <Compile Include="Assets\Scripts\KBE\AvatarProxy.cs" />
     <Compile Include="Assets\Scripts\GameCore\TickData\TickData.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\IController.cs" />
     <Compile Include="Assets\Scripts\UI\LoginUI.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets\Scripts\GameCore\IUpdate.cs" />
     <Compile Include="Assets\Scripts\GameCore\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Time\GameTime.cs" />
+    <Compile Include="Assets\Scripts\UI\MainCityUI.cs" />
     <Compile Include="Assets\Scripts\GameState\GameStateMgr.cs" />
     <Compile Include="Assets\Scripts\ClientGame.cs" />
     <Compile Include="Assets\Scripts\LocalGame.cs" />
@@ -81,9 +84,6 @@
     <Compile Include="Assets\Scripts\KBE\Account.cs" />
     <Compile Include="Assets\Scripts\KBE\ProxyMgr.cs" />
     <Compile Include="Assets\Scripts\UI\UIRoot.cs" />
-    <Compile Include="Assets\Scripts\KBE\Avatar.cs" />
-    <Compile Include="Assets\Scripts\KBE\AvatarProxy.cs" />
-    <Compile Include="Assets\Scripts\UI\MainCityUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
