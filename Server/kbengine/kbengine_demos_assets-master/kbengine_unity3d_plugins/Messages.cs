@@ -1029,6 +1029,21 @@ namespace KBEngine
 		}
 	}
 
+	public class Message_Client_onCreateAccountResult : Message
+	{
+
+		public Message_Client_onCreateAccountResult(MessageID msgid, string msgname, Int16 length, sbyte argstype, List<Byte> msgargtypes):
+			base(msgid, msgname, length, argstype, msgargtypes)
+		{
+
+		}
+
+		public override void handleMessage(MemoryStream msgstream)
+		{
+			KBEngineApp.app.Client_onCreateAccountResult(msgstream);
+		}
+	}
+
 	public class Message_Client_onLoginSuccessfully : Message
 	{
 
@@ -1323,6 +1338,21 @@ namespace KBEngine
 		public override void handleMessage(MemoryStream msgstream)
 		{
 			KBEngineApp.app.Client_onScriptVersionNotMatch(msgstream);
+		}
+	}
+
+	public class Message_Client_onVersionNotMatch : Message
+	{
+
+		public Message_Client_onVersionNotMatch(MessageID msgid, string msgname, Int16 length, sbyte argstype, List<Byte> msgargtypes):
+			base(msgid, msgname, length, argstype, msgargtypes)
+		{
+
+		}
+
+		public override void handleMessage(MemoryStream msgstream)
+		{
+			KBEngineApp.app.Client_onVersionNotMatch(msgstream);
 		}
 	}
 
@@ -1910,6 +1940,9 @@ namespace KBEngine
 			Messages.messages["Client_onAppActiveTickCB"] = new Message_Client_onAppActiveTickCB(72, "Client_onAppActiveTickCB", 0, 0, new List<Byte>());
 			Messages.clientMessages[72] = Messages.messages["Client_onAppActiveTickCB"];
 
+			Messages.messages["Client_onCreateAccountResult"] = new Message_Client_onCreateAccountResult(501, "Client_onCreateAccountResult", -1, -1, new List<Byte>());
+			Messages.clientMessages[501] = Messages.messages["Client_onCreateAccountResult"];
+
 			Messages.messages["Client_onLoginSuccessfully"] = new Message_Client_onLoginSuccessfully(502, "Client_onLoginSuccessfully", -1, -1, new List<Byte>());
 			Messages.clientMessages[502] = Messages.messages["Client_onLoginSuccessfully"];
 
@@ -1994,6 +2027,9 @@ namespace KBEngine
 
 			Messages.messages["Client_onScriptVersionNotMatch"] = new Message_Client_onScriptVersionNotMatch(522, "Client_onScriptVersionNotMatch", -1, -1, new List<Byte>());
 			Messages.clientMessages[522] = Messages.messages["Client_onScriptVersionNotMatch"];
+
+			Messages.messages["Client_onVersionNotMatch"] = new Message_Client_onVersionNotMatch(523, "Client_onVersionNotMatch", -1, -1, new List<Byte>());
+			Messages.clientMessages[523] = Messages.messages["Client_onVersionNotMatch"];
 
 
 			List<Byte> Client_onControlEntity_argstypes = new List<Byte>();

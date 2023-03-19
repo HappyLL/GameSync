@@ -13,6 +13,6 @@
 	<Spaces/>
 	<Space/>
 	<SpaceDuplicate/>
-	<SpawnPoint/>
-	<Hall hasBase="true" hasClient="false" hasCell="false"/>
+	<SpawnPoint/>`
+	<Hall hasBase="true" hasClient="false" hasCell="false"></Hall>
 </root>
