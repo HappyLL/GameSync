@@ -11,7 +11,7 @@ public class MainCityUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        avatarNameTxt.text = $"½ÇÉ«Ãû×Ö: {ProxyMgr.GetInstance().GetAvatarProxy().avatarName}";
+        avatarNameTxt.text = $"è§’è‰²åå­—: {ProxyMgr.GetInstance().GetAvatarProxy().avatarName}";
     }
 
     // Update is called once per frame
