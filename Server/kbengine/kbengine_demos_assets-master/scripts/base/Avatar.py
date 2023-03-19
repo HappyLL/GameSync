@@ -60,9 +60,6 @@ class Avatar(KBEngine.Proxy,
 	def destroySelf(self):
 		"""
 		"""
-
-		KBEngine.globalData["Hall"].logoutHall(self.id)
-
 		if self.client is not None:
 			return
 			
@@ -104,6 +101,8 @@ class Avatar(KBEngine.Proxy,
 		DEBUG_MSG("Avatar[%i].onClientDeath:" % self.id)
 		# 防止正在请求创建cell的同时客户端断开了， 我们延时一段时间来执行销毁cell直到销毁base
 		# 这段时间内客户端短连接登录则会激活entity
+		# 下线了就退出主城
+		KBEngine.globalData["Hall"].logoutHall(self.id)
 		self._destroyTimer = self.addTimer(10, 0, SCDefine.TIMER_TYPE_DESTROY)
 			
 	def onClientGetCell(self):
