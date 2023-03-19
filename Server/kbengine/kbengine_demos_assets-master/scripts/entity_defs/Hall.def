@@ -1,2 +1,18 @@
-<root>    
+<root>
+    <Interfaces>
+		<Interface>			GameObject			</Interface>
+	</Interfaces>
+
+    <BaseMethods>
+		<loginToHall>
+			<Arg>		ENTITYCALL		</Arg>
+			<Arg>		ENTITY_UTYPE	</Arg>
+			<Arg>		PYTHON			</Arg>
+		</loginToHall>
+
+		<logoutHall>
+			<Arg>		ENTITY_ID		</Arg>
+			<Arg>		SPACE_ID		</Arg>
+		</logoutHall>
+	</BaseMethods>
 </root>

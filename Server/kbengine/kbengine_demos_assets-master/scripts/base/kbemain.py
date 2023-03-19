@@ -19,6 +19,7 @@ def onBaseAppReady(isBootstrap):
 	if isBootstrap:
 		# 创建spacemanager
 		KBEngine.createEntityLocally( "Spaces", {} )
+		KBEngine.createEntityLocally( "Hall", {})
 
 def onReadyForShutDown():
 	"""

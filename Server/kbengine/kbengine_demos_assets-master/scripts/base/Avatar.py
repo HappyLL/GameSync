@@ -36,7 +36,9 @@ class Avatar(KBEngine.Proxy,
 		"""
 		INFO_MSG("Avatar[%i-%s] entities enable. spaceUTypeB=%s, entityCall:%s" % (self.id, self.nameB, self.spaceUTypeB, self.client))
 		Teleport.onClientEnabled(self)
-		
+
+		KBEngine.globalData["Hall"].loginToSpace(self)
+
 		if self._destroyTimer > 0:
 			self.delTimer(self._destroyTimer)
 			self._destroyTimer = 0
@@ -58,6 +60,9 @@ class Avatar(KBEngine.Proxy,
 	def destroySelf(self):
 		"""
 		"""
+
+		KBEngine.globalData["Hall"].logoutHall(self.id)
+
 		if self.client is not None:
 			return
 			
