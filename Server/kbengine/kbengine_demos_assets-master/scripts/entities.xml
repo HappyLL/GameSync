@@ -14,5 +14,6 @@
 	<Space/>
 	<SpaceDuplicate/>
 	<SpawnPoint/>`
+	<MatchStub hasBase="true" hasClient="false" hasCell="false"></MatchStub>
 	<Hall hasBase="true" hasClient="false" hasCell="false"></Hall>
 </root>
